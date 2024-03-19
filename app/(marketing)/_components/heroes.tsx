@@ -8,6 +8,7 @@ const Heroes = () => {
           <Image
             src={"/documents.png"}
             fill
+            sizes="auto"
             alt="Documents"
             className="object-contain dark:hidden"
           />
