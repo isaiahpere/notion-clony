@@ -129,6 +129,9 @@ export const getTrash = query({
   },
 });
 
+/**
+ * Restore notes from trash
+ */
 export const restore = mutation({
   args: { id: v.id("documents") },
   handler: async (ctx, args) => {
@@ -164,8 +167,27 @@ export const restore = mutation({
       }
     }
 
-    await ctx.db.patch(args.id, options);
+    const modifiedDocument = await ctx.db.patch(args.id, options);
 
-    return existingDocument;
+    recursiveRestore(args.id);
+
+    return modifiedDocument;
+  },
+});
+
+export const remove = mutation({
+  args: { id: v.id("documents") },
+  handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity();
+    if (!identity) throw new Error("Not Authenticated");
+    const userId = identity.subject;
+
+    const existingDocument = await ctx.db.get(args.id);
+    if (!existingDocument) throw new Error("NO Existing Documents Found");
+    if (existingDocument.userId !== userId) throw new Error("Unauthorized");
+
+    const deletedDocument = await ctx.db.delete(args.id);
+
+    return deletedDocument;
   },
 });
