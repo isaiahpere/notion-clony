@@ -20,7 +20,7 @@ import { api } from "@/convex/_generated/api";
 export const SearchCommand = () => {
   const { user } = useUser();
   const router = useRouter();
-  const documents = useQuery(api.documents.getSearch);
+  const documents = useQuery(api.documents.getSearch); // all non-archived docs
   const [isMounted, setIsMounted] = useState(false);
 
   const toggle = useSearch((store) => store.toggle);
@@ -64,7 +64,7 @@ export const SearchCommand = () => {
               value={`${document._id}-${document.title}`}
               title={document.title}
               onSelect={() => onSelect(document._id)}
-              className="data-[disabled]:pointer-events-auto data-[disabled]:opacity-100"
+              className=""
             >
               {document.icon ? (
                 <p className="mr-2 text-[18px]">{document.icon}</p>

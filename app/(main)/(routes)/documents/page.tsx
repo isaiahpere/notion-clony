@@ -44,7 +44,7 @@ const DocumentsPage = () => {
       <h2 className="text-lg font-medium">
         Welcome to {user?.username}&apos;s Jotion
       </h2>
-      <Button onClick={onCreate}>
+      <Button onClick={onCreate} className="cursor-pointer">
         <PlusCircle className="h-4 w-4 mr-2" />
         Create a Note
       </Button>
