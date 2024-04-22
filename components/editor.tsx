@@ -19,19 +19,6 @@ interface EditorProps {
   editable?: boolean;
 }
 
-export type BlockNoteViewProps = {
-  editor: BlockNoteEditor;
-  editable?: boolean;
-  onSelectionChange?: () => void;
-  onChange?: (content: string) => void;
-  formattingToolbar?: boolean;
-  linkToolbar?: boolean;
-  sideMenu?: boolean;
-  slashMenu?: boolean;
-  imageToolbar?: boolean;
-  tableHandles?: boolean;
-} & HTMLAttributes<HTMLDivElement>;
-
 const Editor = ({ onChange, initialContent, editable }: EditorProps) => {
   const { resolvedTheme } = useTheme();
   const { edgestore } = useEdgeStore();
@@ -52,7 +39,7 @@ const Editor = ({ onChange, initialContent, editable }: EditorProps) => {
     <div className="z-50">
       <BlockNoteView
         editor={editor}
-        editable
+        editable={editable ?? true}
         theme={resolvedTheme === "dark" ? "dark" : "light"}
         onChange={() => {
           onChange(JSON.stringify(editor.document));
