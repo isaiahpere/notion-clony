@@ -47,7 +47,7 @@ const DocumentsPage = () => {
         className="hidden dark:block"
       />
       <h2 className="text-lg font-medium">
-        Welcome to {user?.username}&apos;s Jotion
+        Welcome to {user?.username}&apos;s Notie
       </h2>
       <Button onClick={onCreate} className="cursor-pointer">
         <PlusCircle className="h-4 w-4 mr-2" />
