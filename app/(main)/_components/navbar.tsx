@@ -11,7 +11,6 @@ import { Title } from "./title";
 import { Banner } from "./banner";
 import { Menu } from "./menu";
 import { Publish } from "./publish";
-import { cn } from "@/lib/utils";
 
 interface NavbarProps {
   isCollapsed: boolean;
@@ -40,12 +39,7 @@ export const Navbar = ({ isCollapsed, onResetWidth }: NavbarProps) => {
 
   return (
     <>
-      <nav
-        className={cn(
-          "bg-background dark:bg-[#1F1F1F] px-3 py-2 w-full flex items-center gap-x-4",
-          isCollapsed && "bg-secondary w-0 py-0 px-0 opacity-0"
-        )}
-      >
+      <nav className="bg-background dark:bg-[#1F1F1F] px-3 py-2 w-full flex items-center gap-x-4">
         {isCollapsed && (
           <>
             <MenuIcon
@@ -63,9 +57,7 @@ export const Navbar = ({ isCollapsed, onResetWidth }: NavbarProps) => {
           </>
         )}
       </nav>
-      {isCollapsed && document.isArchived && (
-        <Banner documentId={document._id} />
-      )}
+      {document.isArchived && <Banner documentId={document._id} />}
     </>
   );
 };
