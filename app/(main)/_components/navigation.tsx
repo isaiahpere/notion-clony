@@ -7,6 +7,7 @@ import { useSearch } from "@/hooks/use-search";
 import { useSettings } from "@/hooks/use-settings";
 import {
   ChevronsLeft,
+  Home,
   MenuIcon,
   Plus,
   PlusCircle,
@@ -30,6 +31,7 @@ import { Navbar } from "./navbar";
 import UserItem from "./userItem";
 import Item from "./item";
 import TrashBox from "./trashbox";
+import Link from "next/link";
 
 export const Navigation = () => {
   const pathname = usePathname();
@@ -135,6 +137,10 @@ export const Navigation = () => {
     });
   };
 
+  const handleHome = () => {
+    router.push("/");
+  };
+
   return (
     <>
       <aside
@@ -157,6 +163,7 @@ export const Navigation = () => {
         </div>
         <div>
           <UserItem />
+          <Item label="Home" icon={Home} onClick={handleHome} />
           <Item label="Search" icon={Search} isSearch onClick={search.onOpen} />
           <Item label="Settings" icon={Settings} onClick={settings.onOpen} />
           <Item onClick={handleCreate} label="New page" icon={PlusCircle} />
@@ -198,7 +205,7 @@ export const Navigation = () => {
               <MenuIcon
                 role="button"
                 onClick={resetWidth}
-                className="h-6 w-6 text-muted-foreground"
+                className="h-6 w-6 text-muted-foreground transition-all delay-100"
               />
             )}
           </nav>
